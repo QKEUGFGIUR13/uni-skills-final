@@ -105,18 +105,34 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchNudges = async () => {
-      if (user && paths.length > 0 && recentActivity.length > 0) {
+      // Only fetch nudges if we have data and haven't fetched recently
+      if (user && paths.length > 0 && recentActivity.length > 0 && aiNudges.length === 0) {
         try {
           const nudges = await generateAINudges(user, recentActivity, paths[0]);
           setAiNudges(nudges);
         } catch (error) {
           console.error("Error fetching nudges:", error);
+          // Set fallback nudges on error
+          setAiNudges([
+            {
+              type: "tip",
+              text: "Keep learning consistently to maintain your progress!",
+              icon: "bulb",
+            },
+            {
+              type: "recommendation",
+              text: "Review previous modules to reinforce your knowledge.",
+              icon: "bulb",
+            },
+          ]);
         }
       }
     };
 
-    fetchNudges();
-  }, [user, paths, recentActivity]);
+    // Add delay to avoid immediate API call on page load
+    const timer = setTimeout(fetchNudges, 2000);
+    return () => clearTimeout(timer);
+  }, [user, paths, recentActivity, aiNudges.length]);
 
   const fetchRecentActivity = async () => {
     try {
@@ -642,7 +658,7 @@ const Dashboard = () => {
       </motion.div>
 
       {/* Custom scrollbar styles */}
-      <style jsx>{`
+      <style>{`
         .custom-scrollbar::-webkit-scrollbar {
           width: 6px;
         }
