@@ -12,7 +12,7 @@ export const sendPasswordRecovery = async (email) => {
     try {
         await account.createRecovery(
             email,
-            'https://SkillCompass.ayush-sharma.in/reset-password'
+            `${window.location.origin}/reset-password`
         );
         return { success: true };
     } catch (error) {
