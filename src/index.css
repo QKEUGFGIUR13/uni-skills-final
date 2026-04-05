@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
+    linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-gradient-radial {
+  background-image: radial-gradient(
+    circle at center,
+    var(--tw-gradient-from) 0%,
+    var(--tw-gradient-via) 50%,
+    var(--tw-gradient-to) 100%
+  );
+}
+
+/* Add smooth transitions */
+* {
+  transition: background-color 0.2s, border-color 0.2s, opacity 0.2s;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 3s linear infinite;
+  }
+}
+
+/* CareerSummary.css */
+
+.summary-container {
+  background-color: white;
+  color: #1f2937;
+  padding: 1.5rem;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 1.75;
+  font-family: "Inter", sans-serif;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.summary-container h2 {
+  color: #2563eb;
+  font-size: 1.375rem; /* ~22px */
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.summary-container h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1d4ed8;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.summary-container p {
+  margin-bottom: 0.75rem;
+}
+
+.bold-text {
+  font-weight: 600;
+}
+
+.pie-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+@media screen and (max-width: 640px) {
+  .summary-container {
+    padding: 1rem;
+    font-size: 15px;
+  }
+
+  .pie-wrapper {
+    width: 100%;
+  }
+}
+
+.custom-calendar .react-calendar__tile.quiz-date {
+  position: relative;
+  box-shadow: 0 0 10px #ff6b00;
+}
+@layer utilities {
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-20px) scale(1.1); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
