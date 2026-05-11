@@ -55,6 +55,7 @@ Desktop
 Tablet
 Mobile devices
 Built with Tailwind CSS and Framer Motion for a modern user experience.
+
 Tech Stack
 Frontend
 React.js
